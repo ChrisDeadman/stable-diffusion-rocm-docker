@@ -31,12 +31,11 @@ RUN source venv/bin/activate && \
     find /app/venv -name "__pycache__" -type d -exec rm -r {} + && \
     rm -rf /root/.cache/pip
 
-# Trigger pre-install of requirements
-RUN source venv/bin/activate && \
-    venv/bin/python launch.py --skip-torch-cuda-test --no-download-sd-model || true
-
 # Create a volume for models
-VOLUME /app/models/Stable-diffusion
+VOLUME /app/models
+
+# Create a volume for repositories
+VOLUME /app/repositories
 
 # Create a volume for outputs
 VOLUME /app/outputs
@@ -45,4 +44,4 @@ VOLUME /app/outputs
 EXPOSE 7860
 
 # Set the default command to run when starting the container
-CMD ["venv/bin/python", "launch.py", "--skip-version-check", "--skip-install", "--no-download-sd-model"]
+CMD ["venv/bin/python", "launch.py", "--theme", "dark", "--no-download-sd-model"]
