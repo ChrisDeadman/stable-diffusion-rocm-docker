@@ -31,6 +31,10 @@ RUN source venv/bin/activate && \
     find /app/venv -name "__pycache__" -type d -exec rm -r {} + && \
     rm -rf /root/.cache/pip
 
+# Trigger pre-install of requirements
+RUN source venv/bin/activate && \
+    venv/bin/python launch.py --skip-torch-cuda-test --no-download-sd-model || true
+
 # Volume for models
 VOLUME /app/models
 
