@@ -35,6 +35,9 @@ RUN source venv/bin/activate && \
 RUN source venv/bin/activate && \
     venv/bin/python launch.py --skip-torch-cuda-test --no-download-sd-model || true
 
+# Copy styles
+COPY styles.csv ./
+
 # Volume for models
 VOLUME /app/models
 
