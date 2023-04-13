@@ -31,13 +31,16 @@ RUN source venv/bin/activate && \
     find /app/venv -name "__pycache__" -type d -exec rm -r {} + && \
     rm -rf /root/.cache/pip
 
-# Create a volume for models
+# Volume for models
 VOLUME /app/models
 
-# Create a volume for repositories
+# Volume for repositories
 VOLUME /app/repositories
 
-# Create a volume for outputs
+# Volume for extensions
+VOLUME /app/extensions
+
+# Volume for outputs
 VOLUME /app/outputs
 
 # Expose the web-ui port
